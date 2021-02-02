@@ -136,9 +136,13 @@ def main(lambda_function_name, s3_bucket_name, profile, limit, start_time=None, 
 
         if start_time:
             start_datetime = parse_date(start_time)
+        else:
+            start_datetime = parse_date(0)
 
         if end_time:
             end_datetime = parse_date(end_time)
+        else:
+            end_datetime = datetime.now()
 
         # Scan the objects in the bucket
         s3_object_list = get_objects(s3_client, s3_bucket_name, limit, start_datetime, end_datetime)
